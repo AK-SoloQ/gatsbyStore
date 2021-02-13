@@ -1,56 +1,75 @@
-import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import '../styles/index.css';
+import React from 'react'
+import {graphql, useStaticQuery} from 'gatsby'
+import get from 'lodash/get'
+import {Image, Header} from 'semantic-ui-react'
+import ProductList from '../components/ProductList'
+import SEO from '../components/SEO'
+import logo from '../images/ill-short-dark.svg'
+import Layout from '../components/Layout'
 
-function Index() {
-  const [date, setDate] = useState(null);
-  useEffect(() => {
-    async function getDate() {
-      const res = await fetch('/api/date');
-      const newDate = await res.text();
-      setDate(newDate);
+const StoreIndex = ({location}) => {
+  const data = useStaticQuery(graphql`
+    query IndexQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+      allMoltinProduct {
+        edges {
+          node {
+            id
+            name
+            description
+            mainImageHref
+            meta {
+              display_price {
+                with_tax {
+                  amount
+                  currency
+                  formatted
+                }
+              }
+            }
+            mainImage {
+              childImageSharp {
+                sizes(maxWidth: 600) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
+          }
+        }
+      }
     }
-    getDate();
-  }, []);
+  `)
+
+  const siteTitle = get(data, 'site.siteMetadata.title')
+  const products = get(data, 'allMoltinProduct.edges')
+  const filterProductsWithoutImages = products.filter(v => v.node.mainImageHref)
   return (
-    <main>
-      <Helmet>
-        <title>Gatsby + Node.js (TypeScript) API</title>
-      </Helmet>
-      <h1>Gatsby + Node.js (TypeScript) API</h1>
-      <h2>
-        Deployed with{' '}
-        <a
-          href="https://vercel.com/docs"
-          target="_blank"
-          rel="noreferrer noopener"
+    <Layout location={location}>
+      <SEO title={siteTitle} />
+      <Header
+        as="h3"
+        icon
+        textAlign="center"
+        style={{
+          marginBottom: '2em',
+        }}
+      >
+        <Header.Content
+          style={{
+            width: '60%',
+            margin: '0 auto',
+          }}
         >
-          Vercel
-        </a>
-        !
-      </h2>
-      <p>
-        <a
-          href="https://github.com/vercel/vercel/tree/master/examples/gatsby"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          This project
-        </a>{' '}
-        is a <a href="https://www.gatsbyjs.org/">Gatsby</a> app with two
-        directories, <code>/src</code> for static content and <code>/api</code>{' '}
-        which contains a serverless{' '}
-        <a href="https://nodejs.org/en/">Node.js (TypeScript)</a> function. See{' '}
-        <a href="/api/date">
-          <code>api/date</code> for the Date API with Node.js (TypeScript)
-        </a>
-        .
-      </p>
-      <br />
-      <h2>The date according to Node.js (TypeScript) is:</h2>
-      <p>{date ? date : 'Loading date...'}</p>
-    </main>
-  );
+          <Image src={logo} alt="logo" />
+        </Header.Content>
+      </Header>
+      <ProductList products={filterProductsWithoutImages} />
+    </Layout>
+  )
 }
 
-export default Index;
+export default StoreIndex

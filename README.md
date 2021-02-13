@@ -1,21 +1,47 @@
-![Gatsby Logo](https://github.com/vercel/vercel/blob/master/packages/frameworks/logos/gatsby.svg)
+# Gatsby Starter eCommerce
 
-# Gatsby Example
+Gatsby starter for creating an eCommerce site using
+[Moltin eCommerce Api ](https://moltin.com/).
 
-This directory is a brief example of a [Gatsby](https://www.gatsbyjs.org/) app with [Serverless Functions](https://vercel.com/docs/v2/serverless-functions/introduction) that can be deployed with Vercel and zero configuration.
+This starter adapts an
+[existing](https://github.com/moltin-examples/nextjs-demo-store) NextJS
+eCommerce starter for [GatsbyJS](https://www.gatsbyjs.org/).
 
-## Deploy Your Own
+Demo: <https://parmsang.github.io/gatsby-starter-ecommerce/>
 
-Deploy your own Gatsby project, along with Serverless Functions, with Vercel.
+This starter originally used Gatsby v1 and has now been updated to v2. The
+original version can be found in branch "gatsby-v1".
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/vercel/tree/master/examples/gatsby)
+## Getting started
 
-_Live Example: https://gatsby.now-examples.now.sh_
+Install this starter (assuming Gatsby is installed) by running from your CLI:
 
-### How We Created This Example
+`gatsby new gatsby-store https://github.com/parmsang/gatsby-starter-ecommerce`
 
-To get started with Gatsby on Vercel, you can use the [Gatsby CLI](https://www.gatsbyjs.org/docs/gatsby-cli/) to initialize the project:
+### Running in development
 
-```shell
-$ gatsby new gatsby-site
+`npm run develop`
+
+### Additional Setup
+
+Both a moltin and Stripe account are needed for this store to run successfully.
+
+Create a `.env.development` and `.env.production` file at the project root with
+your moltin `client_id` and Stripe test `publishable key`.
+
+```dosini
+MOLTIN_CLIENT_ID=
+STRIPE_PUBLISHABLE_KEY=
 ```
+
+## Features
+
+- Moltin eCommerce API
+- React 16
+- PWA (includes manifest.webmanifest & offline support)
+- Eslint & Prettier
+- Styled Components
+- Google Analytics - (you enter the tracking-id)
+- Semantic-UI
+- Authentication via Moltin (Login and Register)
+- Stripe checkout
