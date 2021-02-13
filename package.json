@@ -34,6 +34,7 @@
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "@vercel/node": "1.8.5",
     "@testing-library/cypress": "^5.3.1",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^9.5.0",
@@ -78,10 +79,10 @@
   },
   "scripts": {
     "dev": "gatsby develop",
+    "build": "gatsby build",
     "lint": "eslint '**/*.{js,jsx}' --quiet",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "develop": "rimraf .cache && gatsby develop",
-    "build": "rimraf .cache && gatsby build",
     "deploy": "rimraf .cache && gatsby build --prefix-paths && gh-pages -d public",
     "cy:open": "cypress open",
     "test": "is-ci \"test:coverage\" \"test:watch\"",
