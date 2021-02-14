@@ -20,6 +20,7 @@
     "gatsby-plugin-react-helmet": "^3.7.0",
     "gatsby-plugin-sharp": "^2.11.2",
     "gatsby-plugin-styled-components": "^3.7.0",
+    "gatsby-plugin-typography": "^2.12.0",
     "gatsby-source-filesystem": "^2.8.1",
     "gatsby-transformer-sharp": "^2.9.0",
     "is-ci-cli": "^1.1.1",
@@ -29,9 +30,11 @@
     "react-headroom": "^2.2.8",
     "react-helmet": "^6.1.0",
     "react-stripe-checkout": "^2.6.3",
+    "react-typography": "^0.16.19",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "typography": "^0.16.19"
   },
   "devDependencies": {
     "@vercel/node": "1.8.5",
@@ -79,7 +82,7 @@
   },
   "scripts": {
     "dev": "gatsby develop",
-    "build": "gatsby build",
+    "build": "rimraf .cache && gatsby build",
     "lint": "eslint '**/*.{js,jsx}' --quiet",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "develop": "rimraf .cache && gatsby develop",

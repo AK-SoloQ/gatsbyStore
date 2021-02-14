@@ -4,12 +4,12 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby starter ecommerce',
-    author: 'Parminder Sanghera',
+    title: 'Bâtima-Store',
+    author: 'Ahmed Abdelmoula',
     description: 'A starter e-commerce site made using Gatsby.',
-    siteUrl: 'https://parmsang.github.io/gatsby-starter-ecommerce/',
+    siteUrl: 'https://ak-soloq.github.io/store',
   },
-  pathPrefix: '/gatsby-starter-ecommerce',
+  pathPrefix: '/store',
   plugins: [
     {
       resolve: '@moltin/gatsby-source-moltin',
